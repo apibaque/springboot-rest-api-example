@@ -37,11 +37,10 @@ public class Payment {
 	private InstructedAmount instructedAmount = null;
 
 	@PersistenceConstructor
-	public Payment(String id, String transactionId, String status, Date creationDate, Date modificationDate,
+	public Payment(String id, String status, Date creationDate, Date modificationDate,
 			DebtorAccount debtorAccount, CreditorAccount creditorAccount, InstructedAmount instructedAmount) {
 		super();
 		this.id = id;
-		this.transactionId = transactionId;
 		this.status = status;
 		this.creationDate = creationDate;
 		this.modificationDate = modificationDate;
