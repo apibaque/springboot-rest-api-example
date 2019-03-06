@@ -1,7 +1,9 @@
 package cl.redbanc.payment.service;
 
+import java.util.Date;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.Random;
 
 import javax.persistence.EntityNotFoundException;
 
@@ -48,11 +50,10 @@ public class PaymentServiceImpl implements PaymentService {
 		CreditorAccount creditorAccount = new CreditorAccount(payment.getCreditorAccount().getIdentification(), payment.getCreditorAccount().getName(), payment.getCreditorAccount().getDestinationDNI());
 		DebtorAccount debtorAccount = new DebtorAccount(payment.getDebtorAccount().getIdentification(), payment.getDebtorAccount().getName(), payment.getDebtorAccount().getDestinationDNI());
 		InstructedAmount instructedAmount = new InstructedAmount(payment.getInstructedAmount().getAmount(), payment.getInstructedAmount().getCurrency());
-		Payment entity = new Payment(payment.getId().toString(), payment.getTransactionId().toString(),payment.getStatus().toString(), 
-				payment.getCreationDate(), payment.getModificationDate(),
+		Payment entity = new Payment(payment.getId().toString(),payment.getStatus().toString(), 
+				new Date(), payment.getModificationDate(),
 				debtorAccount, creditorAccount,instructedAmount);
-		
-		
+
 		paymentRepository.save(entity);
 		
 		return new PaymentDTO().build(entity);
@@ -63,8 +64,8 @@ public class PaymentServiceImpl implements PaymentService {
 
 		Payment entity = this.findOne(payment.getId());
 		entity.setStatus(payment.getStatus().toString());
-		entity.setModificationDate(payment.getModificationDate());
-		entity.setTransactionId(payment.getTransactionId());
+		entity.setModificationDate(new Date());
+		entity.setTransactionId(generateRandom().toString());
 		
 		paymentRepository.save(entity);
 		
@@ -74,6 +75,13 @@ public class PaymentServiceImpl implements PaymentService {
 	@Override
 	public void deletePayment(String id) {
 		paymentRepository.deleteById(id);
+	}
+	
+	public Integer generateRandom() {
+		Random rand = new Random(); 
+		int rand_int1 = rand.nextInt(100000000); 
+		return rand_int1;
+		
 	}
 
 }
