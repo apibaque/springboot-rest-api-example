@@ -25,6 +25,17 @@ public class CreditorAccountDTO {
 
 	@JsonProperty("destinationDNI")
 	private String destinationDNI = null;
+	
+	@JsonProperty("secondaryIdentificator")
+	private String secondaryIdentificator = null;
+
+	public String getSecondaryIdentificator() {
+		return secondaryIdentificator;
+	}
+
+	public void setSecondaryIdentificator(String secondaryIdentificator) {
+		this.secondaryIdentificator = secondaryIdentificator;
+	}
 
 	public CreditorAccountDTO identification(String identification) {
 		this.identification = identification;
@@ -112,6 +123,7 @@ public class CreditorAccountDTO {
 		sb.append("    identification: ").append(toIndentedString(identification)).append("\n");
 		sb.append("    name: ").append(toIndentedString(name)).append("\n");
 		sb.append("    destinationDNI: ").append(toIndentedString(destinationDNI)).append("\n");
+		sb.append("    secondaryIdentificator: ").append(toIndentedString(secondaryIdentificator)).append("\n");
 		sb.append("}");
 		return sb.toString();
 	}
