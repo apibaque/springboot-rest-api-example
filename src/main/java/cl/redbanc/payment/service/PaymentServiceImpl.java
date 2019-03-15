@@ -52,11 +52,11 @@ public class PaymentServiceImpl implements PaymentService {
 
 	@Override
 	public PaymentDTO addPayment(PaymentDTO payment) {
-		CreditorAccount creditorAccount = new CreditorAccount(payment.getCreditorAccount().getIdentification(), payment.getCreditorAccount().getName(), payment.getCreditorAccount().getDestinationDNI());
-		DebtorAccount debtorAccount = new DebtorAccount(payment.getDebtorAccount().getIdentification(), payment.getDebtorAccount().getName(), payment.getDebtorAccount().getDestinationDNI());
+		CreditorAccount creditorAccount = new CreditorAccount(payment.getCreditorAccount().getIdentification(), payment.getCreditorAccount().getName(), payment.getCreditorAccount().getDestinationDNI(), payment.getCreditorAccount().getSecondaryIdentificator());
+		DebtorAccount debtorAccount = new DebtorAccount(payment.getDebtorAccount().getIdentification(), payment.getDebtorAccount().getName(), payment.getDebtorAccount().getDestinationDNI(), payment.getDebtorAccount().getSecondaryIdentificator());
 		InstructedAmount instructedAmount = new InstructedAmount(payment.getInstructedAmount().getAmount(), payment.getInstructedAmount().getCurrency());
 		Payment entity = new Payment(payment.getId().toString(),payment.getStatus().toString(), 
-				new Date(), payment.getModificationDate(),
+				new Date(), new Date(),
 				debtorAccount, creditorAccount,instructedAmount);
 
 		paymentRepository.save(entity);
@@ -70,7 +70,8 @@ public class PaymentServiceImpl implements PaymentService {
 		Payment entity = this.findOne(payment.getId());
 		entity.setStatus(payment.getStatus().toString());
 		entity.setModificationDate(new Date());
-		entity.setTransactionId(generateRandom().toString());
+		entity.setTransactionId(payment.getTransactionId());
+		//entity.setTransactionId(generateRandom().toString());
 		
 		paymentRepository.save(entity);
 		
