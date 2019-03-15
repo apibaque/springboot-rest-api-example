@@ -27,6 +27,7 @@ public class Payment {
 
 	private Date modificationDate;
 
+
 	@NotEmpty(message = "debtorAccount can not be empty")
 	private DebtorAccount debtorAccount = null;
 

@@ -20,13 +20,16 @@ public class CreditorAccount {
 	String name = null;
 
 	String destinationDNI = null;
+	
+	String secondaryIdentificator;
 
 	@PersistenceConstructor
-	public CreditorAccount(String identification, String name, String destinationDNI) {
+	public CreditorAccount(String identification, String name, String destinationDNI, String secondaryIdentificator) {
 		super();
 		this.identification = identification;
 		this.name = name;
 		this.destinationDNI = destinationDNI;
+		this.secondaryIdentificator = secondaryIdentificator;
 	}
 
 	public String getId() {
@@ -59,6 +62,14 @@ public class CreditorAccount {
 
 	public void setDestinationDNI(String destinationDNI) {
 		this.destinationDNI = destinationDNI;
+	}
+
+	public String getSecondaryIdentificator() {
+		return secondaryIdentificator;
+	}
+
+	public void setSecondaryIdentificator(String secondaryIdentificator) {
+		this.secondaryIdentificator = secondaryIdentificator;
 	}
 
 }
