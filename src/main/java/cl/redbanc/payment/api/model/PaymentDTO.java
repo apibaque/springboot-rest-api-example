@@ -52,6 +52,8 @@ public class PaymentDTO {
 	 * Gets or Sets status
 	 */
 	public enum StatusEnum {
+		PENDING("PENDING"),
+		
 		APPROVED("APPROVED"),
 
 		REJECTED("REJECTED");
