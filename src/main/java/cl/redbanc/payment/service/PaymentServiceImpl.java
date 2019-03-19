@@ -56,9 +56,10 @@ public class PaymentServiceImpl implements PaymentService {
 		DebtorAccount debtorAccount = new DebtorAccount(payment.getDebtorAccount().getIdentification(), payment.getDebtorAccount().getName(), payment.getDebtorAccount().getDestinationDNI(), payment.getDebtorAccount().getSecondaryIdentificator());
 		InstructedAmount instructedAmount = new InstructedAmount(payment.getInstructedAmount().getAmount(), payment.getInstructedAmount().getCurrency());
 		Payment entity = new Payment(payment.getId().toString(),payment.getStatus().toString(), 
-				new Date(), new Date(),
+				payment.getCreationDate(), new Date(),
 				debtorAccount, creditorAccount,instructedAmount);
-
+		System.out.println("addPayment: " + entity.toString());
+		
 		paymentRepository.save(entity);
 		
 		return new PaymentDTO().build(entity);
