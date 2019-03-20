@@ -69,7 +69,7 @@ public class PaymentServiceImpl implements PaymentService {
 	public PaymentDTO updatePayment(PaymentDTO payment) {
 
 		Payment entity = this.findOne(payment.getId());
-		entity.setStatus(payment.getStatus().toString());
+		entity.setStatus("APPROVED");
 		entity.setModificationDate(new Date());
 		entity.setTransactionId(payment.getTransactionId());
 		//entity.setTransactionId(generateRandom().toString());
