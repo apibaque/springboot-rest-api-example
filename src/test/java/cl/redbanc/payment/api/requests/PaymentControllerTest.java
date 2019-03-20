@@ -66,8 +66,8 @@ public class PaymentControllerTest {
      *
      * It tests response to be "Hello Java!"
      */
-    //@Test
-    //@Order(1)
+    @Test
+    @Order(1)
     public void paymentConsentJava() throws Exception {
     	
     	ObjectMapper obj = new ObjectMapper();
@@ -76,6 +76,7 @@ public class PaymentControllerTest {
     	creditorAccount.setDestinationDNI("76000000");
     	creditorAccount.setIdentification("00100");
     	creditorAccount.setName("SOPROLE -1");
+    	creditorAccount.setSecondaryIdentificator("1232444");
     	
 		payment.setCreditorAccount(creditorAccount);
     	
@@ -83,9 +84,10 @@ public class PaymentControllerTest {
 		debtorAccount.setDestinationDNI("8000000");
 		debtorAccount.setIdentification("03700");
 		debtorAccount.setName("SANTANDER");
+		debtorAccount.setSecondaryIdentificator("1232423423");
 		
 		payment.setDebtorAccount(debtorAccount);
-    	payment.setId("3F2504E0-4F89-11D3-9A0C-0305E82C3305");
+    	payment.setId("3F2504E0-4F89-11D3-9A0C-0305E82C3302");
     	
     	InstructedAmountDTO instructedAmount = new InstructedAmountDTO();
     	instructedAmount.amount(BigDecimal.valueOf(500000));
@@ -116,8 +118,8 @@ public class PaymentControllerTest {
     }
     
     
-    @Test
-    @Order(4)
+   // @Test
+   // @Order(4)
     public void paymentOrderByIdJava() throws Exception {
     	
     	/*ObjectMapper obj = new ObjectMapper();
@@ -146,7 +148,7 @@ public class PaymentControllerTest {
     	
         */
     	
-    	String response = mockMvc.perform(MockMvcRequestBuilders.get("/payments/3F2504E0-4F89-11D3-9A0C-0305E82C3304")
+    	String response = mockMvc.perform(MockMvcRequestBuilders.get("/payments/3F2504E0-4F89-11D3-9A0C-0305E82C3302")
     			.contentType(MediaType.APPLICATION_JSON))
             .andExpect(MockMvcResultMatchers.status().isOk())
             .andReturn()
@@ -186,11 +188,11 @@ public class PaymentControllerTest {
     	
 		payment.setInstructedAmount(instructedAmount); */
     	payment.setModificationDate(new java.util.Date());
-    	payment.setStatus(StatusEnum.REJECTED);
+    	payment.setStatus(StatusEnum.APPROVED);
     	
        
     	
-    	String response = mockMvc.perform(MockMvcRequestBuilders.post("/payments/")
+    	/*String response = mockMvc.perform(MockMvcRequestBuilders.post("/payments/")
     			.contentType(MediaType.APPLICATION_JSON)
                 .content(obj.writeValueAsString(payment)))
             .andExpect(MockMvcResultMatchers.status().isOk())
@@ -198,7 +200,7 @@ public class PaymentControllerTest {
             .getResponse()
             .getContentAsString();
         
-        System.out.println( "UPDATE--> " + response);
+        System.out.println( "UPDATE--> " + response);*/
     }
     
     
