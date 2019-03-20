@@ -1,5 +1,7 @@
 package cl.redbanc.payment.api;
 
+import java.util.TimeZone;
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
@@ -23,7 +25,8 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @EnableSwagger2
 @EnableMongoRepositories("cl.redbanc.payment.repository")
 public class Application {
-	public static void main(String[] args) {
+	public static void main(String[] args) {		
+		TimeZone.setDefault(TimeZone.getTimeZone("America/Santiago"));
 		SpringApplication.run(Application.class, args);
 	}
 
