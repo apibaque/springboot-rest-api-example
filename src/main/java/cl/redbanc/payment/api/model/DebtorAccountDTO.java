@@ -26,12 +26,17 @@ public class DebtorAccountDTO {
 	@JsonProperty("destinationDNI")
 	private String destinationDNI = null;
 	
-	@JsonProperty("secondaryIdentificator")
+	@JsonProperty("secondaryIdentification")
 	private String secondaryIdentificator = null;
 			
 
 	public DebtorAccountDTO identification(String identification) {
 		this.identification = identification;
+		return this;
+	}
+	
+	public DebtorAccountDTO secondaryIdentificator(String secondaryIdentificator) {
+		this.secondaryIdentificator = secondaryIdentificator;
 		return this;
 	}
 
@@ -41,7 +46,6 @@ public class DebtorAccountDTO {
 	 * @return identification
 	 **/
 	@NotNull
-
 	public String getIdentification() {
 		return identification;
 	}
@@ -61,7 +65,6 @@ public class DebtorAccountDTO {
 	 * @return name
 	 **/
 	@NotNull
-
 	public String getName() {
 		return name;
 	}
@@ -81,7 +84,6 @@ public class DebtorAccountDTO {
 	 * @return destinationDNI
 	 **/
 	@NotNull
-
 	public String getDestinationDNI() {
 		return destinationDNI;
 	}
@@ -90,6 +92,7 @@ public class DebtorAccountDTO {
 		this.destinationDNI = destinationDNI;
 	}
 
+	@NotNull
 	public String getSecondaryIdentificator() {
 		return secondaryIdentificator;
 	}
@@ -97,6 +100,9 @@ public class DebtorAccountDTO {
 	public void setSecondaryIdentificator(String secondaryIdentificator) {
 		this.secondaryIdentificator = secondaryIdentificator;
 	}
+	
+
+
 
 	@Override
 	public boolean equals(java.lang.Object o) {
@@ -109,7 +115,8 @@ public class DebtorAccountDTO {
 		DebtorAccountDTO debtorAccount = (DebtorAccountDTO) o;
 		return Objects.equals(this.identification, debtorAccount.identification)
 				&& Objects.equals(this.name, debtorAccount.name)
-				&& Objects.equals(this.destinationDNI, debtorAccount.destinationDNI);
+				&& Objects.equals(this.destinationDNI, debtorAccount.destinationDNI)
+				&& Objects.equals(this.secondaryIdentificator, debtorAccount.secondaryIdentificator);
 	}
 
 	@Override
@@ -145,7 +152,9 @@ public class DebtorAccountDTO {
 		this.setDestinationDNI(debtorAccount.getDestinationDNI());
 		this.setIdentification(debtorAccount.getIdentification());
 		this.setName(debtorAccount.getName());
-		
+		this.secondaryIdentificator(debtorAccount.getSecondaryIdentificator());
 		return this;
 	}
+
+
 }

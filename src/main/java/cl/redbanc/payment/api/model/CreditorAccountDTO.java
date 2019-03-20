@@ -26,9 +26,11 @@ public class CreditorAccountDTO {
 	@JsonProperty("destinationDNI")
 	private String destinationDNI = null;
 	
-	@JsonProperty("secondaryIdentificator")
+	@JsonProperty("secondaryIdentification")
 	private String secondaryIdentificator = null;
 
+	
+	@NotNull
 	public String getSecondaryIdentificator() {
 		return secondaryIdentificator;
 	}
@@ -39,6 +41,11 @@ public class CreditorAccountDTO {
 
 	public CreditorAccountDTO identification(String identification) {
 		this.identification = identification;
+		return this;
+	}
+	
+	public CreditorAccountDTO secondaryIdentificator(String secondaryIdentificator) {
+		this.secondaryIdentificator = secondaryIdentificator;
 		return this;
 	}
 
@@ -107,7 +114,9 @@ public class CreditorAccountDTO {
 		CreditorAccountDTO creditorAccount = (CreditorAccountDTO) o;
 		return Objects.equals(this.identification, creditorAccount.identification)
 				&& Objects.equals(this.name, creditorAccount.name)
-				&& Objects.equals(this.destinationDNI, creditorAccount.destinationDNI);
+				&& Objects.equals(this.destinationDNI, creditorAccount.destinationDNI)
+				&& Objects.equals(this.secondaryIdentificator, creditorAccount.secondaryIdentificator)
+				;
 	}
 
 	@Override
@@ -143,7 +152,7 @@ public class CreditorAccountDTO {
 		this.setDestinationDNI(creditorAccount.getDestinationDNI());
 		this.setIdentification(creditorAccount.getIdentification());
 		this.setName(creditorAccount.getName());
-		
+		this.secondaryIdentificator(creditorAccount.getSecondaryIdentificator());
 		return this;
 	}
 }
