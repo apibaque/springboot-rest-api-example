@@ -22,6 +22,7 @@ public class Payment {
 
 	@Field("status")
 	private String status;
+	
 
 	private Date creationDate;
 
