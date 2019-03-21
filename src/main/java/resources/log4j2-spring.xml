@@ -8,8 +8,8 @@
         </Console>
 
         <RollingFile name="RollingFile"
-            fileName="./logs/spring-restapi-log4j2.log"
-            filePattern="./logs/$${date:yyyy-MM}/spring-restapi-log4j2-%d{-dd-MMMM-yyyy}-%i.log.gz">
+            fileName="/home/jboss/logs/spring-restapi-log4j2.log"
+            filePattern="/home/jboss/logs/$${date:yyyy-MM}/spring-restapi-log4j2-%d{-dd-MMMM-yyyy}-%i.log.gz">
             <PatternLayout>
                 <pattern>%d %p %C{1.} [%t] %m%n</pattern>
             </PatternLayout>
